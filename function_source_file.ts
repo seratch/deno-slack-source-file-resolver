@@ -29,5 +29,8 @@ export const FunctionSourceFile = function (importMetaUrl: string): string {
  * @returns valid file path
  */
 function toFilepath(url: string) {
+  if (Deno.build.os === "windows") {
+    return url.replace("file:///", "");
+  }
   return url.replace("file://", "");
 }
