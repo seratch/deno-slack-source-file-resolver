@@ -1,10 +1,13 @@
 ## deno_slack_source_file_resolver
 
-`deno_slack_source_file_resolver` is a tiny utility for Slack's next-generation platform. With this module, you don't need to manually synchronize the `source_file` path name when you rename/move the file.
+`deno_slack_source_file_resolver` is a tiny utility for Slack's next-generation
+platform. With this module, you don't need to manually synchronize the
+`source_file` path name when you rename/move the file.
 
 ### How It Works
 
-It's pretty simple to use this module! You can import the `FunctionSourceFile` module and using it inside `DefineFunction` initialization code:
+It's pretty simple to use this module! You can import the `FunctionSourceFile`
+module and using it inside `DefineFunction` initialization code:
 
 ```typescript
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
