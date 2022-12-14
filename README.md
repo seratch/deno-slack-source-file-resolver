@@ -17,23 +17,11 @@ import { FunctionSourceFile } from "https://deno.land/deno_slack_source_file_res
 export const GreetingFunctionDefinition = DefineFunction({
   callback_id: "greeting_function",
   title: "Generate a greeting",
-  description: "Generate a greeting",
   // REPLACE THIS PART
   // source_file: "functions/greeting_function.ts",
   source_file: FunctionSourceFile(import.meta.url),
-  input_parameters: {
-    properties: {
-      recipient: { type: Schema.slack.types.user_id },
-      message: { type: Schema.types.string },
-    },
-    required: ["message"],
-  },
-  output_parameters: {
-    properties: {
-      greeting: { type: Schema.types.string },
-    },
-    required: ["greeting"],
-  },
+  input_parameters: { properties: {}, required: [] },
+  output_parameters: { properties: {}, required: [] },
 });
 ```
 
