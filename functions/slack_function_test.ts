@@ -12,6 +12,6 @@ Deno.test("Resolve the path", () => {
   });
   assertEquals(
     def.definition.source_file,
-    "src/nested_path/slack_function_test.ts",
+    "functions/slack_function_test.ts",
   );
 });
