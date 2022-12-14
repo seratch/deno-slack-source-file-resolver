@@ -12,7 +12,7 @@ module and using it inside `DefineFunction` initialization code:
 ```typescript
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 // ADD THIS
-import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.1.2/mod.ts";
+import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.1.3/mod.ts";
 
 export const GreetingFunctionDefinition = DefineFunction({
   callback_id: "greeting_function",
@@ -25,7 +25,9 @@ export const GreetingFunctionDefinition = DefineFunction({
 });
 ```
 
-Please note that, when you use this module, **`deno test` command needs to be `deno test --allow-read` instead**. As for running your app by `slack run` and your deployed apps, no extra configuration is requied.
+Please note that, when you use this module, **`deno test` command needs to be
+`deno test --allow-read` instead**. As for running your app by `slack run` and
+your deployed apps, no extra configuration is requied.
 
 ### LICENSE
 
