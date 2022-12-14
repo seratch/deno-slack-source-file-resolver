@@ -2,25 +2,23 @@ export const FunctionSourceFile = function (
   // Pass the value of import.meta.url in a function code
   importMetaUrl: string,
 ): string {
-  let pathToFindMafniestTs = importMetaUrl.replace("file://", "");
-  while (pathToFindMafniestTs !== "") {
-    const urlElements = pathToFindMafniestTs.split("/");
-    pathToFindMafniestTs = urlElements.slice(0, urlElements.length - 1).join(
-      "/",
-    );
-    const files = Deno.readDirSync(pathToFindMafniestTs);
+  let dirToFindManifestTs = toFilepath(importMetaUrl);
+  while (dirToFindManifestTs !== "") {
+    const elems = dirToFindManifestTs.split("/");
+    const end = elems.length - 1;
+    dirToFindManifestTs = elems.slice(0, end).join("/");
+    const files = Deno.readDirSync(dirToFindManifestTs);
     for (const file of files) {
       if (file.name === "manifest.ts") {
-        const result = importMetaUrl.replace("file://", "").replace(
-          pathToFindMafniestTs,
-          "",
-        );
-        if (result.startsWith("/")) {
-          return result.replace(/^\//, "");
-        }
-        return result;
+        const result = toFilepath(importMetaUrl)
+          .replace(dirToFindManifestTs, "");
+        return result.startsWith("/") ? result.replace(/^\//, "") : result;
       }
     }
   }
   throw new Error(`Failed to resolve source_file path for ${importMetaUrl}`);
 };
+
+function toFilepath(url: string) {
+  return url.replace("file://", "");
+}
