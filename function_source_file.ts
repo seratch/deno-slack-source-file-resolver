@@ -2,10 +2,25 @@
  * Automatically resolves the `source_file` part for `DefineFunction()` in your Slack's next-generation platform app.
  *
  * @param importMetaUrl the value of `import.meta.url` in a function code
+ * @param strictMode verifies if the passed file includes the handler part when true
  * @returns the relative path from the root directory of your app project
  */
-export const FunctionSourceFile = function (importMetaUrl: string): string {
-  let dirToFindManifestTs = toFilepath(importMetaUrl);
+export const FunctionSourceFile = function (
+  importMetaUrl: string,
+  strictMode = true,
+): string {
+  const sourceFilePath = toFilepath(importMetaUrl);
+  const source = Deno.readTextFileSync(sourceFilePath);
+  if (
+    strictMode &&
+    !source.includes("SlackFunctionHandler") &&
+    !source.includes("SlackFunction")
+  ) {
+    throw new Error(
+      `${sourceFilePath} does not include SlackFunction() in its code. When you have the handler code in a different file, pass the relative path of the file instead.`,
+    );
+  }
+  let dirToFindManifestTs = sourceFilePath;
   while (dirToFindManifestTs !== "") {
     const elems = dirToFindManifestTs.split("/");
     const end = elems.length - 1;
@@ -19,7 +34,7 @@ export const FunctionSourceFile = function (importMetaUrl: string): string {
       }
     }
   }
-  throw new Error(`Failed to resolve source_file path for ${importMetaUrl}`);
+  throw new Error(`Failed to resolve source_file path for ${sourceFilePath}`);
 };
 
 /**
