@@ -12,7 +12,7 @@ module and using it inside `DefineFunction` initialization code:
 ```typescript
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 // ADD THIS
-import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.1.4/mod.ts";
+import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.1.5/mod.ts";
 
 export const GreetingFunctionDefinition = DefineFunction({
   callback_id: "greeting_function",
