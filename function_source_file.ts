@@ -1,15 +1,15 @@
 /**
  * Automatically resolves the `source_file` part for `DefineFunction()` in your Slack's next-generation platform app.
  *
- * @param importMetaUrl the value of `import.meta` in a function code
+ * @param importMetaUrl the value of `import.meta.url` in a function code
  * @param strictMode verifies if the passed file includes the handler part when true
  * @returns the relative path from the root directory of your app project
  */
 export const FunctionSourceFile = function (
-  importMeta: ImportMeta,
+  importMetaUrl: string,
   strictMode = true,
 ): string {
-  const sourceFilePath = toFilepath(importMeta.url);
+  const sourceFilePath = toFilepath(importMetaUrl);
   const source = Deno.readTextFileSync(sourceFilePath);
   if (
     strictMode &&
@@ -28,7 +28,7 @@ export const FunctionSourceFile = function (
     const files = Deno.readDirSync(dirToFindManifestTs);
     for (const file of files) {
       if (file.name === "manifest.ts") {
-        const result = toFilepath(importMeta.url)
+        const result = toFilepath(importMetaUrl)
           .replace(dirToFindManifestTs, "");
         return result.startsWith("/") ? result.replace(/^\//, "") : result;
       }
@@ -38,9 +38,9 @@ export const FunctionSourceFile = function (
 };
 
 /**
- * Trims the unnecesary parts from import.meta to make it valid as a file path.
+ * Trims the unnecesary parts from import.meta.url to make it valid as a file path.
  *
- * @param url `import.meta` string value
+ * @param url `import.meta.url` string value
  * @returns valid file path
  */
 function toFilepath(url: string) {
