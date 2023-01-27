@@ -1,3 +1,5 @@
+**Important Notice**: This module does not work for production apps deployed by `slack deploy` command, while it works for `slack run` app perfectly.
+
 ## deno_slack_source_file_resolver
 
 `deno_slack_source_file_resolver` is a tiny utility for Slack's next-generation
