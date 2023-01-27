@@ -3,7 +3,7 @@ import { FunctionSourceFile } from "../mod.ts";
 
 Deno.test("Throw an error when the source code does not include the handler part", () => {
   try {
-    const path = FunctionSourceFile(import.meta.url);
+    const path = FunctionSourceFile(import.meta);
     fail(`Error should be thrown here (returned: ${path})`);
   } catch (e) {
     assertMatch(
@@ -16,6 +16,6 @@ Deno.test("Throw an error when the source code does not include the handler part
 });
 
 Deno.test("Resolve the path when strict mode is false", () => {
-  const path = FunctionSourceFile(import.meta.url, false);
+  const path = FunctionSourceFile(import.meta, false);
   assertEquals(path, "functions/function_source_file_test.ts");
 });

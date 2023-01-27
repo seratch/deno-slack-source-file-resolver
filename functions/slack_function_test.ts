@@ -5,7 +5,7 @@ import { FunctionSourceFile } from "../mod.ts";
 const def = DefineFunction({
   callback_id: "function-name",
   title: "Do something awesome!",
-  source_file: FunctionSourceFile(import.meta.url),
+  source_file: FunctionSourceFile(import.meta),
   input_parameters: { properties: {}, required: [] },
   output_parameters: { properties: {}, required: [] },
 });

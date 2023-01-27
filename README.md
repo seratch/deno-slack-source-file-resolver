@@ -12,14 +12,14 @@ module and using it inside `DefineFunction` initialization code:
 ```typescript
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 // ADD THIS
-import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.1.5/mod.ts";
+import { FunctionSourceFile } from "https://deno.land/x/deno_slack_source_file_resolver@0.2.0/mod.ts";
 
 export const GreetingFunctionDefinition = DefineFunction({
   callback_id: "greeting_function",
   title: "Generate a greeting",
   // REPLACE THIS PART
   // source_file: "functions/greeting_function.ts",
-  source_file: FunctionSourceFile(import.meta.url),
+  source_file: FunctionSourceFile(import.meta),
   input_parameters: { properties: {}, required: [] },
   output_parameters: { properties: {}, required: [] },
 });
