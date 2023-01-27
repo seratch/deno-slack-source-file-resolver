@@ -1,4 +1,5 @@
-**Important Notice**: This module does not work for production apps deployed by `slack deploy` command, while it works for `slack run` app perfectly.
+**Important Notice**: This module does not work for production apps deployed by
+`slack deploy` command, while it works for `slack run` app perfectly.
 
 ## deno_slack_source_file_resolver
 
